@@ -1,9 +1,9 @@
 import fetch from 'node-fetch'
 import querystring from 'querystring'
 
-export async function getImage(scwSecretToken: string, region: string, image: string) {
+export async function getImage(scwSecretToken: string, region: string, imageName: string) {
   const response = await fetch(
-    `https://api.scaleway.com/registry/v1/regions/${region}/images?name=${image}`,
+    `https://api.scaleway.com/registry/v1/regions/${region}/images?name=${imageName}`,
     { headers: { 'x-auth-token': scwSecretToken } }
   )
 

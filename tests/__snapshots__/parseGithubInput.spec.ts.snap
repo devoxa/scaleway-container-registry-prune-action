@@ -2,7 +2,7 @@
 
 exports[`parseGithubInput can parse valid input 1`] = `
 Object {
-  "image": "rg.nl-ams.scw.cloud/devoxa/hello-world",
+  "imageName": "hello-world",
   "keepLast": 10,
   "region": "nl-ams",
   "scwSecretToken": "03a23c20-d00c-4e80-9166-bf9318c949de",

@@ -4,7 +4,7 @@ import { deleteTag, getImage, listTags } from './scalewayApi'
 export async function run(input: GithubInput) {
   const options = parseGithubInput(input)
 
-  const image = await getImage(options.scwSecretToken, options.region, options.image)
+  const image = await getImage(options.scwSecretToken, options.region, options.imageName)
   const tags = await listTags(options.scwSecretToken, options.region, image.id)
 
   let count = 0

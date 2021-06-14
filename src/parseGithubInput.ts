@@ -1,5 +1,5 @@
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i
-const IMAGE_REGEX = /^rg\.(.*?)\.scw.cloud\/[^\/]+\/[^\/]+$/i
+const IMAGE_REGEX = /^rg\.(.*?)\.scw.cloud\/[^\/]+\/([^\/]+)$/i
 
 export interface GithubInput {
   scwSecretToken: string
@@ -11,7 +11,7 @@ export interface GithubInput {
 export interface Options {
   scwSecretToken: string
   region: string
-  image: string
+  imageName: string
   tagPattern: RegExp
   keepLast: number
 }
@@ -26,6 +26,7 @@ export function parseGithubInput(input: GithubInput): Options {
     throw new Error(`'image' is not the name of an image on the Scaleway Container Registry`)
   }
   const region = imageMatch[1]
+  const imageName = imageMatch[2]
 
   let tagPattern
   try {
@@ -46,7 +47,7 @@ export function parseGithubInput(input: GithubInput): Options {
   return {
     scwSecretToken: input.scwSecretToken,
     region,
-    image: input.image,
+    imageName,
     tagPattern,
     keepLast,
   }
