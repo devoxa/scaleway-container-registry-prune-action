@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`run can prune all tags 1`] = `
+Array [
+  Array [
+    "03a23c20-d00c-4e80-9166-bf9318c949de",
+    "nl-ams",
+    "tag-id-4",
+  ],
+  Array [
+    "03a23c20-d00c-4e80-9166-bf9318c949de",
+    "nl-ams",
+    "tag-id-2",
+  ],
+  Array [
+    "03a23c20-d00c-4e80-9166-bf9318c949de",
+    "nl-ams",
+    "tag-id-1",
+  ],
+  Array [
+    "03a23c20-d00c-4e80-9166-bf9318c949de",
+    "nl-ams",
+    "tag-id-0",
+  ],
+]
+`;
+
+exports[`run can prune excess tags 1`] = `
+Array [
+  Array [
+    "Keeping tag: tag-name-a (2021-01-04)",
+  ],
+  Array [
+    "Skipping tag: pr-123 (2021-01-03)",
+  ],
+  Array [
+    "Keeping tag: tag-name-b (2021-01-02)",
+  ],
+  Array [
+    "Pruning tag: tag-name-c (2021-01-01)",
+  ],
+  Array [
+    "Pruning tag: tag-name-d (2020-01-01)",
+  ],
+]
+`;
+
+exports[`run can prune excess tags 2`] = `
+Array [
+  Array [
+    "03a23c20-d00c-4e80-9166-bf9318c949de",
+    "nl-ams",
+    "tag-id-1",
+  ],
+  Array [
+    "03a23c20-d00c-4e80-9166-bf9318c949de",
+    "nl-ams",
+    "tag-id-0",
+  ],
+]
+`;

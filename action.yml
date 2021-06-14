@@ -1,0 +1,20 @@
+name: 'Prune Scaleway Container Registry'
+description: 'Prune images in the Scaleway Container Registry by deleting excess tags.'
+
+inputs:
+  scw-secret-token:
+    description: 'The "secret key" part of a Scaleway API key'
+    required: true
+  image:
+    description: 'The name of the image that should be pruned'
+    required: true
+  tag-pattern:
+    description: 'A regular expression matching the tags that should be pruned'
+    required: true
+  keep-last:
+    description: 'The number of most recent tags to keep'
+    required: true
+
+runs:
+  using: 'node14'
+  main: 'dist/index.js'

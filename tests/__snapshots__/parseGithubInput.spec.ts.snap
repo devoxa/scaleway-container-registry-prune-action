@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseGithubInput can parse valid input 1`] = `
+Object {
+  "image": "rg.nl-ams.scw.cloud/devoxa/hello-world",
+  "keepLast": 10,
+  "region": "nl-ams",
+  "scwSecretToken": "03a23c20-d00c-4e80-9166-bf9318c949de",
+  "tagPattern": /\\^\\(\\?!pr-\\)\\.\\+\\$/,
+}
+`;
+
+exports[`parseGithubInput errors for invalid image 1`] = `"'image' is not the name of an image on the Scaleway Container Registry"`;
+
+exports[`parseGithubInput errors for invalid keepLast 1`] = `"'keep-last' is not a valid positive integer"`;
+
+exports[`parseGithubInput errors for invalid keepLast 2`] = `"'keep-last' must be smaller than 100"`;
+
+exports[`parseGithubInput errors for invalid scwSecretToken 1`] = `"'scw-secret-token' is not a valid \\"secret key\\" part of a Scaleway API key"`;
+
+exports[`parseGithubInput errors for invalid tagPattern 1`] = `"'tag-pattern' is not a valid regular expression"`;
