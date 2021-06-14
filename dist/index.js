@@ -2291,7 +2291,6 @@ __nccwpck_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(186);
-var core_default = /*#__PURE__*/__nccwpck_require__.n(core);
 ;// CONCATENATED MODULE: ./src/parseGithubInput.ts
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const IMAGE_REGEX = /^rg\.(.*?)\.scw.cloud\/[^\/]+\/[^\/]+$/i;
@@ -2421,10 +2420,10 @@ function run(input) {
 
 
 run({
-    scwSecretToken: core_default().getInput('scw-secret-token'),
-    image: core_default().getInput('image'),
-    tagPattern: core_default().getInput('tag-pattern'),
-    keepLast: core_default().getInput('keep-last'),
+    scwSecretToken: (0,core.getInput)('scw-secret-token'),
+    image: (0,core.getInput)('image'),
+    tagPattern: (0,core.getInput)('tag-pattern'),
+    keepLast: (0,core.getInput)('keep-last'),
 });
 
 })();

@@ -20,10 +20,10 @@
   },
   "prettier": "@devoxa/prettier-config",
   "dependencies": {
+    "@actions/core": "^1.4.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@actions/core": "^1.4.0",
     "@devoxa/eslint-config": "^2.0.5",
     "@devoxa/prettier-config": "^1.0.0",
     "@types/jest": "^26.0.3",
