@@ -54,7 +54,7 @@ jobs:
         uses: devoxa/scaleway-container-registry-prune
         with:
           scw-secret-token: ${{ secrets.SCW_SECRET_TOKEN }}
-          image: rg.nl-ams.scw.cloud/devoxa/genesis-server
+          image: rg.nl-ams.scw.cloud/devoxa/genesis-server@v1
           tag-pattern: ^(?!pr-).+$
           keep-last: 10
 ```
