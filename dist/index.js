@@ -2315,7 +2315,7 @@ function parseGithubInput(input) {
         throw new Error(`'keep-last' is not a valid positive integer`);
     }
     const keepLast = parseInt(input.keepLast, 10);
-    if (parseInt(input.keepLast, 10) >= 100) {
+    if (keepLast >= 100) {
         throw new Error(`'keep-last' must be smaller than 100`);
     }
     return {
@@ -2401,18 +2401,18 @@ function run(input) {
         const image = yield getImage(options.scwSecretToken, options.region, options.image);
         const tags = yield listTags(options.scwSecretToken, options.region, image.id);
         let count = 0;
-        for (const tagToDelete of tags) {
-            if (!tagToDelete.name.match(options.tagPattern)) {
-                console.log(`Skipping tag: ${tagToDelete.name} (${tagToDelete.created_at})`);
+        for (const tag of tags) {
+            if (!tag.name.match(options.tagPattern)) {
+                console.log(`Skipping tag: ${tag.name} (${tag.created_at})`);
                 continue;
             }
             count++;
             if (count <= options.keepLast) {
-                console.log(`Keeping tag: ${tagToDelete.name} (${tagToDelete.created_at})`);
+                console.log(`Keeping tag: ${tag.name} (${tag.created_at})`);
                 continue;
             }
-            console.log(`Pruning tag: ${tagToDelete.name} (${tagToDelete.created_at})`);
-            yield deleteTag(options.scwSecretToken, options.region, tagToDelete.id);
+            console.log(`Pruning tag: ${tag.name} (${tag.created_at})`);
+            yield deleteTag(options.scwSecretToken, options.region, tag.id);
         }
     });
 }
