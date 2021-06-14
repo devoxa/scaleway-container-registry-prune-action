@@ -25,11 +25,11 @@ describe('run', () => {
     getImageSpy.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
     listTagsSpy.mockReturnValueOnce(
       Promise.resolve([
-        { id: 'tag-id-4', name: 'tag-name-a', created_at: '2021-01-04' }, // Keep
-        { id: 'tag-id-3', name: 'pr-123', created_at: '2021-01-03' }, // Skip
-        { id: 'tag-id-2', name: 'tag-name-b', created_at: '2021-01-02' }, // Keep
-        { id: 'tag-id-1', name: 'tag-name-c', created_at: '2021-01-01' }, // Prune
-        { id: 'tag-id-0', name: 'tag-name-d', created_at: '2020-01-01' }, // Prune
+        { id: 'tag-id-4', name: 'tag-name-a', updated_at: '2021-01-04' }, // Keep
+        { id: 'tag-id-3', name: 'pr-123', updated_at: '2021-01-03' }, // Skip
+        { id: 'tag-id-2', name: 'tag-name-b', updated_at: '2021-01-02' }, // Keep
+        { id: 'tag-id-1', name: 'tag-name-c', updated_at: '2021-01-01' }, // Prune
+        { id: 'tag-id-0', name: 'tag-name-d', updated_at: '2020-01-01' }, // Prune
       ])
     )
 
@@ -43,11 +43,11 @@ describe('run', () => {
     getImageSpy.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
     listTagsSpy.mockReturnValueOnce(
       Promise.resolve([
-        { id: 'tag-id-4', name: 'tag-name-a', created_at: '2021-01-04' }, // Prune
-        { id: 'tag-id-3', name: 'pr-123', created_at: '2021-01-03' }, // Skip
-        { id: 'tag-id-2', name: 'tag-name-b', created_at: '2021-01-02' }, // Prune
-        { id: 'tag-id-1', name: 'tag-name-c', created_at: '2021-01-01' }, // Prune
-        { id: 'tag-id-0', name: 'tag-name-d', created_at: '2020-01-01' }, // Prune
+        { id: 'tag-id-4', name: 'tag-name-a', updated_at: '2021-01-04' }, // Prune
+        { id: 'tag-id-3', name: 'pr-123', updated_at: '2021-01-03' }, // Skip
+        { id: 'tag-id-2', name: 'tag-name-b', updated_at: '2021-01-02' }, // Prune
+        { id: 'tag-id-1', name: 'tag-name-c', updated_at: '2021-01-01' }, // Prune
+        { id: 'tag-id-0', name: 'tag-name-d', updated_at: '2020-01-01' }, // Prune
       ])
     )
 
@@ -60,11 +60,11 @@ describe('run', () => {
     getImageSpy.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
     listTagsSpy.mockReturnValueOnce(
       Promise.resolve([
-        { id: 'tag-id-4', name: 'tag-name-a', created_at: '2021-01-04' }, // Keep
-        { id: 'tag-id-3', name: 'pr-123', created_at: '2021-01-03' }, // Skip
-        { id: 'tag-id-2', name: 'tag-name-b', created_at: '2021-01-02' }, // Keep
-        { id: 'tag-id-1', name: 'tag-name-c', created_at: '2021-01-01' }, // Keep
-        { id: 'tag-id-0', name: 'tag-name-d', created_at: '2020-01-01' }, // Keep
+        { id: 'tag-id-4', name: 'tag-name-a', updated_at: '2021-01-04' }, // Keep
+        { id: 'tag-id-3', name: 'pr-123', updated_at: '2021-01-03' }, // Skip
+        { id: 'tag-id-2', name: 'tag-name-b', updated_at: '2021-01-02' }, // Keep
+        { id: 'tag-id-1', name: 'tag-name-c', updated_at: '2021-01-01' }, // Keep
+        { id: 'tag-id-0', name: 'tag-name-d', updated_at: '2020-01-01' }, // Keep
       ])
     )
 

@@ -52,9 +52,9 @@ describe('scalewayApi', () => {
     it('can list the tags from the API', async () => {
       mockFetchJson({
         tags: [
-          { id: 'tag-id-1', name: 'tag-name-1', created_at: '2021-01-03' },
-          { id: 'tag-id-2', name: 'tag-name-2', created_at: '2021-01-02' },
-          { id: 'tag-id-3', name: 'tag-name-3', created_at: '2021-01-01' },
+          { id: 'tag-id-1', name: 'tag-name-1', updated_at: '2021-01-03' },
+          { id: 'tag-id-2', name: 'tag-name-2', updated_at: '2021-01-02' },
+          { id: 'tag-id-3', name: 'tag-name-3', updated_at: '2021-01-01' },
         ],
       })
 
@@ -82,7 +82,7 @@ describe('scalewayApi', () => {
 
   describe('deleteTag', () => {
     it('can delete the tag from the API', async () => {
-      mockFetchJson({ id: 'tag-id-1', name: 'tag-name-1', created_at: '2021-01-03' })
+      mockFetchJson({ id: 'tag-id-1', name: 'tag-name-1', updated_at: '2021-01-03' })
 
       const tag = await deleteTag('scw-token', 'scw-region', 'tag-id-1')
 

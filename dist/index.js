@@ -2359,14 +2359,15 @@ function listTags(scwSecretToken, region, imageId) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = external_querystring_default().encode({
             page_size: 100,
-            order_by: 'created_at_asc',
         });
         const response = yield lib_default()(`https://api.scaleway.com/registry/v1/regions/${region}/images/${imageId}/tags?${query}`, { headers: { 'x-auth-token': scwSecretToken } });
         const json = yield response.json();
         if (!json.tags || json.tags.length === 0) {
             throw new Error('Could not list tags from the API');
         }
-        return json.tags;
+        const tags = json.tags;
+        tags.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
+        return tags;
     });
 }
 function deleteTag(scwSecretToken, region, tagId) {
@@ -2403,15 +2404,15 @@ function run(input) {
         let count = 0;
         for (const tag of tags) {
             if (!tag.name.match(options.tagPattern)) {
-                console.log(`Skipping tag: ${tag.name} (${tag.created_at})`);
+                console.log(`Skipping tag: ${tag.name} (${tag.updated_at})`);
                 continue;
             }
             count++;
             if (count <= options.keepLast) {
-                console.log(`Keeping tag: ${tag.name} (${tag.created_at})`);
+                console.log(`Keeping tag: ${tag.name} (${tag.updated_at})`);
                 continue;
             }
-            console.log(`Pruning tag: ${tag.name} (${tag.created_at})`);
+            console.log(`Pruning tag: ${tag.name} (${tag.updated_at})`);
             yield deleteTag(options.scwSecretToken, options.region, tag.id);
         }
     });

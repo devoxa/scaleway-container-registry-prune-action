@@ -19,7 +19,6 @@ export async function getImage(scwSecretToken: string, region: string, imageName
 export async function listTags(scwSecretToken: string, region: string, imageId: string) {
   const query = querystring.encode({
     page_size: 100,
-    order_by: 'created_at_asc',
   })
 
   const response = await fetch(
@@ -33,7 +32,11 @@ export async function listTags(scwSecretToken: string, region: string, imageId: 
     throw new Error('Could not list tags from the API')
   }
 
-  return json.tags as Array<{ id: string; name: string; created_at: string }>
+  // Sort the tags by the time they were last updated (most recent first)
+  const tags = json.tags as Array<{ id: string; name: string; updated_at: string }>
+  tags.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+
+  return tags
 }
 
 export async function deleteTag(scwSecretToken: string, region: string, tagId: string) {
@@ -52,5 +55,5 @@ export async function deleteTag(scwSecretToken: string, region: string, tagId: s
     throw new Error('Could not delete tag from the API')
   }
 
-  return json as { id: string; name: string; created_at: string }
+  return json as { id: string; name: string; updated_at: string }
 }
