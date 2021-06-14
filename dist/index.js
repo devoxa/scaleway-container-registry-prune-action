@@ -2293,7 +2293,7 @@ __nccwpck_require__.r(__webpack_exports__);
 var core = __nccwpck_require__(186);
 ;// CONCATENATED MODULE: ./src/parseGithubInput.ts
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const IMAGE_REGEX = /^rg\.(.*?)\.scw.cloud\/[^\/]+\/[^\/]+$/i;
+const IMAGE_REGEX = /^rg\.(.*?)\.scw.cloud\/[^\/]+\/([^\/]+)$/i;
 function parseGithubInput(input) {
     if (!input.scwSecretToken.match(UUID_REGEX)) {
         throw new Error(`'scw-secret-token' is not a valid "secret key" part of a Scaleway API key`);
@@ -2303,6 +2303,7 @@ function parseGithubInput(input) {
         throw new Error(`'image' is not the name of an image on the Scaleway Container Registry`);
     }
     const region = imageMatch[1];
+    const imageName = imageMatch[2];
     let tagPattern;
     try {
         tagPattern = new RegExp(input.tagPattern);
@@ -2320,7 +2321,7 @@ function parseGithubInput(input) {
     return {
         scwSecretToken: input.scwSecretToken,
         region,
-        image: input.image,
+        imageName,
         tagPattern,
         keepLast,
     };
@@ -2344,9 +2345,9 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 };
 
 
-function getImage(scwSecretToken, region, image) {
+function getImage(scwSecretToken, region, imageName) {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield lib_default()(`https://api.scaleway.com/registry/v1/regions/${region}/images?name=${image}`, { headers: { 'x-auth-token': scwSecretToken } });
+        const response = yield lib_default()(`https://api.scaleway.com/registry/v1/regions/${region}/images?name=${imageName}`, { headers: { 'x-auth-token': scwSecretToken } });
         const json = yield response.json();
         if (!json.images || !json.images[0]) {
             throw new Error('Could not get image from the API');
@@ -2397,7 +2398,7 @@ var run_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 function run(input) {
     return run_awaiter(this, void 0, void 0, function* () {
         const options = parseGithubInput(input);
-        const image = yield getImage(options.scwSecretToken, options.region, options.image);
+        const image = yield getImage(options.scwSecretToken, options.region, options.imageName);
         const tags = yield listTags(options.scwSecretToken, options.region, image.id);
         let count = 0;
         for (const tag of tags) {
@@ -2424,6 +2425,9 @@ run({
     image: (0,core.getInput)('image'),
     tagPattern: (0,core.getInput)('tag-pattern'),
     keepLast: (0,core.getInput)('keep-last'),
+}).catch((err) => {
+    console.log('Error: ' + err.message);
+    process.exit(1);
 });
 
 })();
