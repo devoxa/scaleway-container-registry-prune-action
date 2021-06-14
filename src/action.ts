@@ -6,4 +6,7 @@ run({
   image: getInput('image'),
   tagPattern: getInput('tag-pattern'),
   keepLast: getInput('keep-last'),
+}).catch((err) => {
+  console.log('Error: ' + err.message)
+  process.exit(1)
 })
