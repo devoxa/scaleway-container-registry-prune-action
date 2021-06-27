@@ -51,10 +51,10 @@ jobs:
 
     steps:
       - name: 'Prune excess Docker tags from registry'
-        uses: devoxa/scaleway-container-registry-prune-action
+        uses: devoxa/scaleway-container-registry-prune-action@v1
         with:
           scw-secret-token: ${{ secrets.SCW_SECRET_TOKEN }}
-          image: rg.nl-ams.scw.cloud/devoxa/genesis-server@v1
+          image: rg.nl-ams.scw.cloud/devoxa/genesis-server
           tag-pattern: ^(?!pr-).+$
           keep-last: 10
 ```
