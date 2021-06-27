@@ -1,6 +1,6 @@
 {
   "imageSize": 75,
-  "projectName": "scaleway-container-registry-prune",
+  "projectName": "scaleway-container-registry-prune-action",
   "projectOwner": "devoxa",
   "repoType": "github",
   "repoHost": "https://github.com",

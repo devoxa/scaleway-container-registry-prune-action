@@ -1,12 +1,12 @@
 {
-  "name": "@devoxa/scaleway-container-registry-prune",
-  "description": "Prune images in the Scaleway Container Registry by deleting excess tags",
+  "name": "@devoxa/scaleway-container-registry-prune-action",
+  "description": "Prune images in the Scaleway Container Registry by deleting excess tags via Github Actions",
   "version": "0.0.0",
   "private": true,
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/devoxa/scaleway-container-registry-prune"
+    "url": "https://github.com/devoxa/scaleway-container-registry-prune-action"
   },
   "scripts": {
     "test": "jest",
