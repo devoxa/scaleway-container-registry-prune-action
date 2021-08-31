@@ -21,7 +21,7 @@
   "prettier": "@devoxa/prettier-config",
   "dependencies": {
     "@actions/core": "1.5.0",
-    "node-fetch": "2.6.1"
+    "node-fetch": "3.0.0"
   },
   "devDependencies": {
     "@devoxa/eslint-config": "2.0.5",
