@@ -21,14 +21,14 @@
   "prettier": "@devoxa/prettier-config",
   "dependencies": {
     "@actions/core": "1.6.0",
-    "node-fetch": "2.6.7"
+    "node-fetch": "3.2.0"
   },
   "devDependencies": {
     "@devoxa/eslint-config": "3.0.1",
     "@devoxa/prettier-config": "1.0.2",
     "@types/jest": "27.4.0",
     "@types/node": "16.11.21",
-    "@types/node-fetch": "2.5.12",
+    "@types/node-fetch": "3.0.2",
     "@vercel/ncc": "0.33.1",
     "eslint": "8.7.0",
     "jest": "27.4.7",
