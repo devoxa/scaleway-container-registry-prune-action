@@ -30,7 +30,7 @@
     "@types/node": "16.11.26",
     "@types/node-fetch": "2.6.1",
     "@vercel/ncc": "0.33.3",
-    "eslint": "8.10.0",
+    "eslint": "8.11.0",
     "jest": "27.5.1",
     "prettier": "2.5.1",
     "ts-jest": "27.1.3",
