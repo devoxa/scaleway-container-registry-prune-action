@@ -20,7 +20,7 @@
   },
   "prettier": "@devoxa/prettier-config",
   "dependencies": {
-    "@actions/core": "1.8.1",
+    "@actions/core": "1.8.2",
     "node-fetch": "2.6.7"
   },
   "devDependencies": {
