@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`scalewayApi deleteTag can delete the tag from the API 1`] = `
-Object {
+{
   "id": "tag-id-1",
   "name": "tag-name-1",
   "updated_at": "2021-01-03",
@@ -9,10 +9,10 @@ Object {
 `;
 
 exports[`scalewayApi deleteTag can delete the tag from the API 2`] = `
-Array [
+[
   "https://api.scaleway.com/registry/v1/regions/scw-region/tags/tag-id-1?force=true",
-  Object {
-    "headers": Object {
+  {
+    "headers": {
       "x-auth-token": "scw-token",
     },
     "method": "DELETE",
@@ -23,17 +23,17 @@ Array [
 exports[`scalewayApi deleteTag throws an error if the deletion from the API failed 1`] = `[Error: Could not delete tag from the API]`;
 
 exports[`scalewayApi getImage can get the image from the API 1`] = `
-Object {
+{
   "id": "image-id",
   "name": "image-name",
 }
 `;
 
 exports[`scalewayApi getImage can get the image from the API 2`] = `
-Array [
+[
   "https://api.scaleway.com/registry/v1/regions/scw-region/images?name=image-name",
-  Object {
-    "headers": Object {
+  {
+    "headers": {
       "x-auth-token": "scw-token",
     },
   },
@@ -43,18 +43,18 @@ Array [
 exports[`scalewayApi getImage throws an error if the image is not in the API 1`] = `[Error: Could not get image from the API]`;
 
 exports[`scalewayApi listTags can list the tags from the API 1`] = `
-Array [
-  Object {
+[
+  {
     "id": "tag-id-1",
     "name": "tag-name-1",
     "updated_at": "2021-01-03",
   },
-  Object {
+  {
     "id": "tag-id-2",
     "name": "tag-name-2",
     "updated_at": "2021-01-02",
   },
-  Object {
+  {
     "id": "tag-id-3",
     "name": "tag-name-3",
     "updated_at": "2021-01-01",
@@ -63,10 +63,10 @@ Array [
 `;
 
 exports[`scalewayApi listTags can list the tags from the API 2`] = `
-Array [
+[
   "https://api.scaleway.com/registry/v1/regions/scw-region/images/image-id/tags?page_size=100",
-  Object {
-    "headers": Object {
+  {
+    "headers": {
       "x-auth-token": "scw-token",
     },
   },
