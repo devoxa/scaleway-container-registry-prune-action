@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`parseGithubInput can parse valid input 1`] = `
-Object {
+{
   "imageName": "hello-world",
   "keepLast": 10,
   "region": "nl-ams",
@@ -16,6 +16,6 @@ exports[`parseGithubInput errors for invalid keepLast 1`] = `"'keep-last' is not
 
 exports[`parseGithubInput errors for invalid keepLast 2`] = `"'keep-last' must be smaller than 100"`;
 
-exports[`parseGithubInput errors for invalid scwSecretToken 1`] = `"'scw-secret-token' is not a valid \\"secret key\\" part of a Scaleway API key"`;
+exports[`parseGithubInput errors for invalid scwSecretToken 1`] = `"'scw-secret-token' is not a valid "secret key" part of a Scaleway API key"`;
 
 exports[`parseGithubInput errors for invalid tagPattern 1`] = `"'tag-pattern' is not a valid regular expression"`;
