@@ -27,7 +27,7 @@
     "@devoxa/eslint-config": "3.0.1",
     "@devoxa/prettier-config": "1.0.2",
     "@types/jest": "29.2.4",
-    "@types/node": "18.11.13",
+    "@types/node": "18.11.14",
     "@types/node-fetch": "2.6.2",
     "@vercel/ncc": "0.36.0",
     "eslint": "8.29.0",
