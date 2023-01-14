@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://github.com/devoxa/scaleway-container-registry-prune-action/actions?query=branch%3Amaster+workflow%3A%22Continuous+Integration%22">
     <img
-      src="https://img.shields.io/github/workflow/status/devoxa/scaleway-container-registry-prune-action/Continuous%20Integration?style=flat-square"
+      src="https://img.shields.io/github/actions/workflow/status/devoxa/scaleway-container-registry-prune-action/push.yml?branch=master&style=flat-square"
       alt="Build Status"
     />
   </a>
