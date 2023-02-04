@@ -2,9 +2,11 @@ import { run } from '../src/run'
 import * as scalewayApi from '../src/scalewayApi'
 
 const logSpy = jest.spyOn(console, 'log')
-const getImageSpy = jest.spyOn(scalewayApi, 'getImage')
-const listTagsSpy = jest.spyOn(scalewayApi, 'listTags')
-const deleteTagSpy = jest.spyOn(scalewayApi, 'deleteTag')
+
+jest.mock('../src/scalewayApi')
+const mockGetImage = jest.mocked(scalewayApi.getImage)
+const mockListTags = jest.mocked(scalewayApi.listTags)
+const mockDeleteTag = jest.mocked(scalewayApi.deleteTag)
 
 const INPUT = {
   scwSecretToken: '03a23c20-d00c-4e80-9166-bf9318c949de',
@@ -16,14 +18,14 @@ const INPUT = {
 describe('run', () => {
   beforeEach(() => {
     logSpy.mockReset()
-    getImageSpy.mockReset()
-    listTagsSpy.mockReset()
-    deleteTagSpy.mockReset()
+    mockGetImage.mockReset()
+    mockListTags.mockReset()
+    mockDeleteTag.mockReset()
   })
 
   it('can prune excess tags', async () => {
-    getImageSpy.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
-    listTagsSpy.mockReturnValueOnce(
+    mockGetImage.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
+    mockListTags.mockReturnValueOnce(
       Promise.resolve([
         { id: 'tag-id-4', name: 'tag-name-a', updated_at: '2021-01-04' }, // Keep
         { id: 'tag-id-3', name: 'pr-123', updated_at: '2021-01-03' }, // Skip
@@ -36,12 +38,12 @@ describe('run', () => {
     await run(INPUT)
 
     expect(logSpy.mock.calls).toMatchSnapshot()
-    expect(deleteTagSpy.mock.calls).toMatchSnapshot()
+    expect(mockDeleteTag.mock.calls).toMatchSnapshot()
   })
 
   it('can prune all tags', async () => {
-    getImageSpy.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
-    listTagsSpy.mockReturnValueOnce(
+    mockGetImage.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
+    mockListTags.mockReturnValueOnce(
       Promise.resolve([
         { id: 'tag-id-4', name: 'tag-name-a', updated_at: '2021-01-04' }, // Prune
         { id: 'tag-id-3', name: 'pr-123', updated_at: '2021-01-03' }, // Skip
@@ -53,12 +55,12 @@ describe('run', () => {
 
     await run({ ...INPUT, keepLast: '0' })
 
-    expect(deleteTagSpy.mock.calls).toMatchSnapshot()
+    expect(mockDeleteTag.mock.calls).toMatchSnapshot()
   })
 
   it('can prune no tags', async () => {
-    getImageSpy.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
-    listTagsSpy.mockReturnValueOnce(
+    mockGetImage.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
+    mockListTags.mockReturnValueOnce(
       Promise.resolve([
         { id: 'tag-id-4', name: 'tag-name-a', updated_at: '2021-01-04' }, // Keep
         { id: 'tag-id-3', name: 'pr-123', updated_at: '2021-01-03' }, // Skip
@@ -70,6 +72,6 @@ describe('run', () => {
 
     await run({ ...INPUT, keepLast: '50' })
 
-    expect(deleteTagSpy.mock.calls).toEqual([])
+    expect(mockDeleteTag.mock.calls).toEqual([])
   })
 })
