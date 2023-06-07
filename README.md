@@ -37,26 +37,14 @@
 ## Usage
 
 ```yml
-name: Continuous Integration
-
-on:
-  push:
-    branches:
-      - master
-
-jobs:
-  prune-container-registry:
-    name: 'Prune container registry'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 'Prune excess Docker tags from registry'
-        uses: devoxa/scaleway-container-registry-prune-action@v1
-        with:
-          scw-secret-token: ${{ secrets.SCW_SECRET_TOKEN }}
-          image: rg.nl-ams.scw.cloud/devoxa/genesis-server
-          tag-pattern: ^(?!pr-).+$
-          keep-last: 10
+steps:
+  - name: 'Prune excess Docker tags from registry'
+    uses: devoxa/scaleway-container-registry-prune-action@v1
+    with:
+      scw-secret-token: ${{ secrets.SCW_SECRET_TOKEN }}
+      image: rg.nl-ams.scw.cloud/devoxa/genesis-server
+      tag-pattern: ^(?!pr-).+$
+      keep-last: 10
 ```
 
 ### Inputs
