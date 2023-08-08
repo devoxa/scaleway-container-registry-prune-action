@@ -8,30 +8,30 @@ const VALID_INPUT = {
 }
 
 describe('parseGithubInput', () => {
-  it('can parse valid input', () => {
+  test('can parse valid input', () => {
     const options = parseGithubInput(VALID_INPUT)
     expect(options).toMatchSnapshot()
   })
 
-  it('errors for invalid scwSecretToken', () => {
+  test('errors for invalid scwSecretToken', () => {
     expect(() =>
       parseGithubInput({ ...VALID_INPUT, scwSecretToken: 'foobar' })
     ).toThrowErrorMatchingSnapshot()
   })
 
-  it('errors for invalid image', () => {
+  test('errors for invalid image', () => {
     expect(() =>
       parseGithubInput({ ...VALID_INPUT, image: 'scw.cloud/devoxa/hello-world' })
     ).toThrowErrorMatchingSnapshot()
   })
 
-  it('errors for invalid tagPattern', () => {
+  test('errors for invalid tagPattern', () => {
     expect(() =>
       parseGithubInput({ ...VALID_INPUT, tagPattern: '[' })
     ).toThrowErrorMatchingSnapshot()
   })
 
-  it('errors for invalid keepLast', () => {
+  test('errors for invalid keepLast', () => {
     expect(() =>
       parseGithubInput({ ...VALID_INPUT, keepLast: 'TEN' })
     ).toThrowErrorMatchingSnapshot()
