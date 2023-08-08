@@ -23,7 +23,7 @@ describe('run', () => {
     mockDeleteTag.mockReset()
   })
 
-  it('can prune excess tags', async () => {
+  test('can prune excess tags', async () => {
     mockGetImage.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
     mockListTags.mockReturnValueOnce(
       Promise.resolve([
@@ -41,7 +41,7 @@ describe('run', () => {
     expect(mockDeleteTag.mock.calls).toMatchSnapshot()
   })
 
-  it('can prune all tags', async () => {
+  test('can prune all tags', async () => {
     mockGetImage.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
     mockListTags.mockReturnValueOnce(
       Promise.resolve([
@@ -58,7 +58,7 @@ describe('run', () => {
     expect(mockDeleteTag.mock.calls).toMatchSnapshot()
   })
 
-  it('can prune no tags', async () => {
+  test('can prune no tags', async () => {
     mockGetImage.mockReturnValueOnce(Promise.resolve({ id: 'image-id', name: 'image-name' }))
     mockListTags.mockReturnValueOnce(
       Promise.resolve([

@@ -21,7 +21,7 @@ describe('scalewayApi', () => {
   })
 
   describe('getImage', () => {
-    it('can get the image from the API', async () => {
+    test('can get the image from the API', async () => {
       mockFetchJson({
         images: [{ id: 'image-id', name: 'image-name' }],
       })
@@ -32,7 +32,7 @@ describe('scalewayApi', () => {
       expect(getFetchCall()).toMatchSnapshot()
     })
 
-    it('throws an error if the image is not in the API', async () => {
+    test('throws an error if the image is not in the API', async () => {
       mockFetchJson({
         images: [],
       })
@@ -49,7 +49,7 @@ describe('scalewayApi', () => {
   })
 
   describe('listTags', () => {
-    it('can list the tags from the API', async () => {
+    test('can list the tags from the API', async () => {
       mockFetchJson({
         tags: [
           { id: 'tag-id-1', name: 'tag-name-1', updated_at: '2021-01-03' },
@@ -64,7 +64,7 @@ describe('scalewayApi', () => {
       expect(getFetchCall()).toMatchSnapshot()
     })
 
-    it('throws an error if there are no tags in the API', async () => {
+    test('throws an error if there are no tags in the API', async () => {
       mockFetchJson({
         tags: [],
       })
@@ -81,7 +81,7 @@ describe('scalewayApi', () => {
   })
 
   describe('deleteTag', () => {
-    it('can delete the tag from the API', async () => {
+    test('can delete the tag from the API', async () => {
       mockFetchJson({ id: 'tag-id-1', name: 'tag-name-1', updated_at: '2021-01-03' })
 
       const tag = await deleteTag('scw-token', 'scw-region', 'tag-id-1')
@@ -90,7 +90,7 @@ describe('scalewayApi', () => {
       expect(getFetchCall()).toMatchSnapshot()
     })
 
-    it('throws an error if the deletion from the API failed', async () => {
+    test('throws an error if the deletion from the API failed', async () => {
       mockFetchJson({ id: 'nope' })
 
       let error
