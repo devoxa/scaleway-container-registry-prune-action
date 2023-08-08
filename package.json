@@ -10,8 +10,8 @@
   },
   "scripts": {
     "test": "jest",
-    "format": "prettier --list-different --write .",
-    "format:check": "prettier --check .",
+    "format": "prettier --ignore-path='.prettierignore' --list-different --write .",
+    "format:check": "prettier --ignore-path='.prettierignore' --check .",
     "lint": "eslint --ignore-path='.gitignore' '{src,tests}/**/*.ts'",
     "build": "rm -rf dist/ && ncc build src/action.ts -o dist"
   },
