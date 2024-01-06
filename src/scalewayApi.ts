@@ -1,5 +1,8 @@
-import fetch from 'node-fetch'
 import querystring from 'querystring'
+
+type ScwGetImagesResponse = { images?: Array<{ id: string; name: string }> }
+type ScwGetTagsResponse = { tags?: Array<{ id: string; name: string; updated_at: string }> }
+type ScwDeleteTagResponse = { id: string; name: string; updated_at: string }
 
 export async function getImage(scwSecretToken: string, region: string, imageName: string) {
   const response = await fetch(
@@ -7,13 +10,13 @@ export async function getImage(scwSecretToken: string, region: string, imageName
     { headers: { 'x-auth-token': scwSecretToken } }
   )
 
-  const json = await response.json()
+  const json = (await response.json()) as ScwGetImagesResponse
 
   if (!json.images || !json.images[0]) {
     throw new Error('Could not get image from the API')
   }
 
-  return json.images[0] as { id: string; name: string }
+  return json.images[0]
 }
 
 export async function listTags(scwSecretToken: string, region: string, imageId: string) {
@@ -26,14 +29,14 @@ export async function listTags(scwSecretToken: string, region: string, imageId: 
     { headers: { 'x-auth-token': scwSecretToken } }
   )
 
-  const json = await response.json()
+  const json = (await response.json()) as ScwGetTagsResponse
 
   if (!json.tags || json.tags.length === 0) {
     throw new Error('Could not list tags from the API')
   }
 
   // Sort the tags by the time they were last updated (most recent first)
-  const tags = json.tags as Array<{ id: string; name: string; updated_at: string }>
+  const tags = json.tags
   tags.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
 
   return tags
@@ -49,11 +52,11 @@ export async function deleteTag(scwSecretToken: string, region: string, tagId: s
     { method: 'DELETE', headers: { 'x-auth-token': scwSecretToken } }
   )
 
-  const json = await response.json()
+  const json = (await response.json()) as ScwDeleteTagResponse
 
   if (json.id !== tagId) {
     throw new Error('Could not delete tag from the API')
   }
 
-  return json as { id: string; name: string; updated_at: string }
+  return json
 }
