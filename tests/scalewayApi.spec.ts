@@ -1,23 +1,19 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import fetch from 'node-fetch'
 import { deleteTag, getImage, listTags } from '../src/scalewayApi'
 
-jest.mock('node-fetch')
+const mockFetch = jest.fn()
+global.fetch = mockFetch
 
 function mockFetchJson(value: unknown) {
-  // @ts-ignore
-  fetch.mockReturnValue(Promise.resolve({ json: async () => value }))
+  mockFetch.mockReturnValue(Promise.resolve({ json: async () => value }))
 }
 
 function getFetchCall() {
-  // @ts-ignore
-  return fetch.mock.calls[0]
+  return mockFetch.mock.calls[0]
 }
 
 describe('scalewayApi', () => {
   beforeEach(() => {
-    // @ts-ignore
-    fetch.mockReset()
+    mockFetch.mockReset()
   })
 
   describe('getImage', () => {
