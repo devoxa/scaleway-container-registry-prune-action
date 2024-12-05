@@ -32,6 +32,7 @@ export function parseGithubInput(input: GithubInput): Options {
   try {
     tagPattern = new RegExp(input.tagPattern)
   } catch (err) {
+    /* c8 ignore next */
     if (!(err instanceof Error)) throw err
     throw new Error("'tag-pattern' is not a valid regular expression")
   }
