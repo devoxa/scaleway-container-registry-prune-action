@@ -3,11 +3,11 @@ import { deleteTag, getImage, listTags } from '../src/scalewayApi'
 const mockFetch = jest.fn()
 global.fetch = mockFetch
 
-function mockFetchJson(value: unknown) {
-  mockFetch.mockReturnValue(Promise.resolve({ json: async () => value }))
+function mockFetchJson(value: unknown): void {
+  mockFetch.mockReturnValue(Promise.resolve({ json: () => Promise.resolve(value) }))
 }
 
-function getFetchCall() {
+function getFetchCall(): Array<unknown> {
   return mockFetch.mock.calls[0]
 }
 

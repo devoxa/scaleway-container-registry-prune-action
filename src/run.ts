@@ -1,7 +1,7 @@
 import { GithubInput, parseGithubInput } from './parseGithubInput'
 import { deleteTag, getImage, listTags } from './scalewayApi'
 
-export async function run(input: GithubInput) {
+export async function run(input: GithubInput): Promise<void> {
   const options = parseGithubInput(input)
 
   const image = await getImage(options.scwSecretToken, options.region, options.imageName)
