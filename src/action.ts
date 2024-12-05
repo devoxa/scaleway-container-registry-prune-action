@@ -7,6 +7,8 @@ run({
   tagPattern: getInput('tag-pattern'),
   keepLast: getInput('keep-last'),
 }).catch((err) => {
+  if (!(err instanceof Error)) throw err
+
   console.log('Error: ' + err.message)
   process.exit(1)
 })

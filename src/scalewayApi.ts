@@ -1,10 +1,18 @@
 import querystring from 'querystring'
 
-type ScwGetImagesResponse = { images?: Array<{ id: string; name: string }> }
-type ScwGetTagsResponse = { tags?: Array<{ id: string; name: string; updated_at: string }> }
+type ScwGetImagesResponse = { images?: Array<ScwImage> }
+type ScwImage = { id: string; name: string }
+
+type ScwGetTagsResponse = { tags?: Array<ScwTag> }
+type ScwTag = { id: string; name: string; updated_at: string }
+
 type ScwDeleteTagResponse = { id: string; name: string; updated_at: string }
 
-export async function getImage(scwSecretToken: string, region: string, imageName: string) {
+export async function getImage(
+  scwSecretToken: string,
+  region: string,
+  imageName: string
+): Promise<ScwImage> {
   const response = await fetch(
     `https://api.scaleway.com/registry/v1/regions/${region}/images?name=${imageName}`,
     { headers: { 'x-auth-token': scwSecretToken } }
@@ -19,7 +27,11 @@ export async function getImage(scwSecretToken: string, region: string, imageName
   return json.images[0]
 }
 
-export async function listTags(scwSecretToken: string, region: string, imageId: string) {
+export async function listTags(
+  scwSecretToken: string,
+  region: string,
+  imageId: string
+): Promise<Array<ScwTag>> {
   const query = querystring.encode({
     page_size: 100,
   })
@@ -42,7 +54,11 @@ export async function listTags(scwSecretToken: string, region: string, imageId: 
   return tags
 }
 
-export async function deleteTag(scwSecretToken: string, region: string, tagId: string) {
+export async function deleteTag(
+  scwSecretToken: string,
+  region: string,
+  tagId: string
+): Promise<ScwDeleteTagResponse> {
   const query = querystring.encode({
     force: true,
   })
