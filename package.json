@@ -12,11 +12,8 @@
     "test": "jest",
     "format": "prettier --ignore-path='.prettierignore' --list-different --write .",
     "format:check": "prettier --ignore-path='.prettierignore' --check .",
-    "lint": "eslint --ignore-path='.gitignore' '{src,tests}/**/*.ts'",
+    "lint": "eslint '{src,tests}/**/*.ts'",
     "build": "rm -rf dist/ && ncc build src/action.ts -o dist"
-  },
-  "eslintConfig": {
-    "extends": "@devoxa"
   },
   "prettier": "@devoxa/prettier-config",
   "dependencies": {
