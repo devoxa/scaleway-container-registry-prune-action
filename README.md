@@ -5,7 +5,7 @@
 
 <!-- Description -->
 <h4 align="center">
-  Prune images in the Scaleway Container Registry by deleting excess tags via Github Actions.
+  Prune images in the Scaleway Container Registry by deleting excess tags via Github Actions
 </h4>
 
 <!-- Badges -->
