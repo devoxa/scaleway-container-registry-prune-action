@@ -17,7 +17,7 @@
   },
   "prettier": "@devoxa/prettier-config",
   "dependencies": {
-    "@actions/core": "1.11.1"
+    "@actions/core": "3.0.0"
   },
   "devDependencies": {
     "@devoxa/eslint-config": "4.0.2",
